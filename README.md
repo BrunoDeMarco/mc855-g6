@@ -44,3 +44,7 @@ Caso você não possua o Nodemon instalado, é recomendado a instalação, mas e
 Depois, basta rodar o projeto:
 
 `npm start`
+
+Para ter acesso à versão com o Hot Reload (com o Nodemon instalado):
+
+`npm run dev`
