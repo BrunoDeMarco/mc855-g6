@@ -11,7 +11,7 @@ const permission = (...permittedRoles: Roles[]) => {
     if (permittedRoles.includes(JSON.parse(decoded as string).role)) {
       next();
     } else {
-      res.status(403);
+      res.status(403).send();
     }
   };
 };
