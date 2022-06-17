@@ -31,17 +31,21 @@ export const authenticate = async (
         },
       },
     });
-    return {
-      authenticated: true,
-      jwt: jwt.sign(
-        { userId: foundUser?.user_id },
-        process.env.JWT_SECRET as string,
-        {
-          expiresIn: 3600 * 24 * 7, // One week.
-        }
-      ),
-    };
+    if (foundUser) {
+      return {
+        authenticated: true,
+        jwt: jwt.sign(
+          { userId: foundUser?.user_id, role: foundUser?.role },
+          process.env.JWT_SECRET as string,
+          {
+            expiresIn: 3600 * 24 * 7, // One week.
+          }
+        ),
+      };
+    }
   } catch (err) {
     return { authenticated: false };
   }
+
+  return { authenticated: false };
 };

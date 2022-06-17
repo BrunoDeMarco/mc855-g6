@@ -1,12 +1,9 @@
-import bodyParser from "body-parser";
 import express from "express";
 import { authenticate } from "../services/authenticationService";
 
-const app = express();
+const authRouter = express.Router();
 
-app.use(express.json());
-
-app.post("/session", (req, res) => {
+authRouter.post("/session", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
@@ -21,4 +18,4 @@ app.post("/session", (req, res) => {
     .catch(() => res.status(500).send());
 });
 
-app.listen(5000);
+export default authRouter;

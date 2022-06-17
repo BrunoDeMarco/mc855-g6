@@ -4,11 +4,11 @@ import { Roles } from "../services/authenticationService";
 
 const permission = (...permittedRoles: Roles[]) => {
   return (req: Request, res: Response, next: Function) => {
-    const authToken = req.headers["authorization"] || "";
+    const authToken = req.headers["authorization"]?.split(" ")[1] || "";
 
     const decoded = jwt.verify(authToken, process.env.JWT_SECRET as string);
 
-    if (permittedRoles.includes(JSON.parse(decoded as string).role)) {
+    if (permittedRoles.includes(JSON.parse(JSON.stringify(decoded)).role)) {
       next();
     } else {
       res.status(403).send();
