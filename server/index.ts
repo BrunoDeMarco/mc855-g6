@@ -1,11 +1,15 @@
-import express from 'express';
+import express from "express";
+import authRouter from "./controllers/authenticationController";
+import sampleProtectedRouter from "./controllers/sampleProtectedController";
 
 const app = express();
 
-app.get('', (req, res) => {
-    res.send('Hello from a not so brand new express API.')
-});
-
 const port = 5000;
 
-app.listen(port, () => console.log(`Listening on port ${port}.`))
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use(authRouter);
+app.use(sampleProtectedRouter);
+
+app.listen(port, () => console.log(`Listening on port ${port}.`));
