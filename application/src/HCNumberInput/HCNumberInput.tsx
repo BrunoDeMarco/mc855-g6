@@ -1,5 +1,5 @@
 import React from "react";
 
-export const HCNumber: React.FC = () => {
+export const HCNumberInput: React.FC = () => {
   return <></>;
 };
