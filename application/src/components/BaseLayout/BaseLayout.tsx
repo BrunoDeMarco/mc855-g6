@@ -21,7 +21,10 @@ export const BaseLayout: React.FC<IBaseLayoutProps> = ({
   );
 };
 
-const Wrapper = styled.div(() => ({}));
+const Wrapper = styled.div(() => ({
+  display: "flex",
+  flexDirection: "column" as "column",
+}));
 
 const StyledTitle = styled.span(() => ({}));
 
