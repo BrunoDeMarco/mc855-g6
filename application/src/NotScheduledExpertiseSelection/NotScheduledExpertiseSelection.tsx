@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 import { BaseLayout } from "../components/BaseLayout/BaseLayout";
 
 export const NotScheduledExpertiseSelection: React.FC = () => {
@@ -11,10 +12,18 @@ export const NotScheduledExpertiseSelection: React.FC = () => {
       }
     >
       <span>Selecione em qual especialidade você deseja se consultar:</span>
-      <Button variant={"contained"}>Cardiologia Pediátrica</Button>
-      <Button variant={"contained"}>Triagem Neonatal</Button>
-      <Button variant={"contained"}>Reumatologia</Button>
-      <Button variant={"contained"}>Genética</Button>
+      <Link to={"/first-time-info"}>
+        <Button variant={"contained"}>Cardiologia Pediátrica</Button>
+      </Link>
+      <Link to={"/first-time-info"}>
+        <Button variant={"contained"}>Triagem Neonatal</Button>
+      </Link>
+      <Link to={"/first-time-info"}>
+        <Button variant={"contained"}>Reumatologia</Button>
+      </Link>
+      <Link to={"/first-time-info"}>
+        <Button variant={"contained"}>Genética</Button>
+      </Link>
     </BaseLayout>
   );
 };

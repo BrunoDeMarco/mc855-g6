@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 import { BaseLayout } from "../components/BaseLayout/BaseLayout";
 
 export const ScheduleTypeSelection: React.FC = () => {
@@ -11,13 +12,19 @@ export const ScheduleTypeSelection: React.FC = () => {
       }
     >
       <span>Sua consulta já estava agendada?</span>
-      <Button variant={"contained"}>Sim</Button>
-      <Button variant={"contained"}>
-        Não, mas eu recebi um email me informando de uma consulta encaixe
-      </Button>
-      <Button variant={"contained"}>
-        Não, mas gostaria de me consultar hoje
-      </Button>
+      <Link to={"/scheduled-info"}>
+        <Button variant={"contained"}>Sim</Button>
+      </Link>
+      <Link to={"/fit-in-info"}>
+        <Button variant={"contained"}>
+          Não, mas eu recebi um email me informando de uma consulta encaixe
+        </Button>
+      </Link>
+      <Link to={"/possibly-info"}>
+        <Button variant={"contained"}>
+          Não, mas gostaria de me consultar hoje
+        </Button>
+      </Link>
     </BaseLayout>
   );
 };

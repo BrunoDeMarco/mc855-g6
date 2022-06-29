@@ -1,5 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 import { BaseLayout } from "../components/BaseLayout/BaseLayout";
 
 export const HCNumberInput: React.FC = () => {
@@ -11,7 +12,9 @@ export const HCNumberInput: React.FC = () => {
       }
     >
       <TextField name={"hc"} value={""} label={"Digite o seu HC aqui."} />
-      <Button variant={"contained"}>Próxima Etapa</Button>
+      <Link to={"/attendance-type-selection"}>
+        <Button variant={"contained"}>Próxima Etapa</Button>
+      </Link>
     </BaseLayout>
   );
 };
