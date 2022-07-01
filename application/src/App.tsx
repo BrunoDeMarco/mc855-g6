@@ -4,8 +4,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import { AdministrativeAttendanceInfo } from "./AdministrativeAttendanceInfo/AdministrativeAttendanceInfo";
 import { AttendanceTypeSelection } from "./AttendanceTypeSelection/AttendanceTypeSelection";
+import { Header } from "./components/Header/Header";
 import { FirstTimeInfo } from "./FirstTimeInfo/FirstTimeInfo";
 import { FitInInfo } from "./FitInInfo/FitInInfo";
+import GlobalStyle from "./globalStyles";
 import { HCNumberInput } from "./HCNumberInput/HCNumberInput";
 import { Home } from "./Home/Home";
 import { NotScheduledExpertiseSelection } from "./NotScheduledExpertiseSelection/NotScheduledExpertiseSelection";
@@ -19,8 +21,10 @@ import { WrongPlaceInfo } from "./WrongPlaceInfo/WrongPlaceInfo";
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Container>
+    <>
+      <BrowserRouter>
+        <GlobalStyle />
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
@@ -58,11 +62,9 @@ const App: React.FC = () => {
           />
           <Route path="/wrong-place-info" element={<WrongPlaceInfo />} />
         </Routes>
-      </Container>
-    </BrowserRouter>
+      </BrowserRouter>
+    </>
   );
 };
-
-const Container = styled.div(() => ({ maxWidth: 400, margin: "auto" }));
 
 export default App;

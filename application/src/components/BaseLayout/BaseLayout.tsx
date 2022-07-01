@@ -26,6 +26,12 @@ const Wrapper = styled.div(() => ({
   flexDirection: "column" as "column",
 }));
 
-const StyledTitle = styled.span(() => ({}));
+const StyledTitle = styled.span(() => ({
+  fontSize: 18,
+  marginBottom: 16,
+}));
 
-const StyledSubtitle = styled.span(() => ({}));
+const StyledSubtitle = styled.span(() => ({
+  fontSize: 16,
+  marginBottom: 16,
+}));
