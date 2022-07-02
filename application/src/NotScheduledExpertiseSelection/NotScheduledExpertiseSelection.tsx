@@ -26,6 +26,9 @@ export const NotScheduledExpertiseSelection: React.FC = () => {
         <Link to={"/first-time-info"}>
           <Button variant={"contained"}>Genética</Button>
         </Link>
+        <Link to={"/other-expertise-info"}>
+          <Button>Outra Especialidade</Button>
+        </Link>
       </Box>
     </BaseLayout>
   );
