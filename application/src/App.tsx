@@ -7,6 +7,7 @@ import { AttendanceTypeSelection } from "./AttendanceTypeSelection/AttendanceTyp
 import { Header } from "./components/Header/Header";
 import { FirstTimeInfo } from "./FirstTimeInfo/FirstTimeInfo";
 import { FitInInfo } from "./FitInInfo/FitInInfo";
+import { FormContextProvider } from "./FormContextProvider/FormContextProvider";
 import GlobalStyle from "./globalStyles";
 import { HCNumberInput } from "./HCNumberInput/HCNumberInput";
 import { Home } from "./Home/Home";
@@ -25,43 +26,45 @@ const App: React.FC = () => {
       <BrowserRouter>
         <GlobalStyle />
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/administrative-attendance-info"
-            element={<AdministrativeAttendanceInfo />}
-          />
-          <Route
-            path="/attendance-type-selection"
-            element={<AttendanceTypeSelection />}
-          />
-          <Route path="/first-time-info" element={<FirstTimeInfo />} />
-          <Route path="/fit-in-info" element={<FitInInfo />} />
-          <Route path="/hc-number-input" element={<HCNumberInput />} />
-          <Route
-            path="/not-scheduled-expertise-selection"
-            element={<NotScheduledExpertiseSelection />}
-          />
-          <Route
-            path="/other-expertise-info"
-            element={<OtherExpertiseInfo />}
-          />
-          <Route
-            path="/patient-type-selection"
-            element={<PatientTypeSelection />}
-          />
-          <Route path="/possibly-info" element={<PossiblyInfo />} />
-          <Route
-            path="/recurring-consultation-expertise-selection"
-            element={<RecurringConsultationExpertiseSelection />}
-          />
-          <Route path="/scheduled-info" element={<ScheduledInfo />} />
-          <Route
-            path="/schedule-type-selection"
-            element={<ScheduleTypeSelection />}
-          />
-          <Route path="/wrong-place-info" element={<WrongPlaceInfo />} />
-        </Routes>
+        <FormContextProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/administrative-attendance-info"
+              element={<AdministrativeAttendanceInfo />}
+            />
+            <Route
+              path="/attendance-type-selection"
+              element={<AttendanceTypeSelection />}
+            />
+            <Route path="/first-time-info" element={<FirstTimeInfo />} />
+            <Route path="/fit-in-info" element={<FitInInfo />} />
+            <Route path="/hc-number-input" element={<HCNumberInput />} />
+            <Route
+              path="/not-scheduled-expertise-selection"
+              element={<NotScheduledExpertiseSelection />}
+            />
+            <Route
+              path="/other-expertise-info"
+              element={<OtherExpertiseInfo />}
+            />
+            <Route
+              path="/patient-type-selection"
+              element={<PatientTypeSelection />}
+            />
+            <Route path="/possibly-info" element={<PossiblyInfo />} />
+            <Route
+              path="/recurring-consultation-expertise-selection"
+              element={<RecurringConsultationExpertiseSelection />}
+            />
+            <Route path="/scheduled-info" element={<ScheduledInfo />} />
+            <Route
+              path="/schedule-type-selection"
+              element={<ScheduleTypeSelection />}
+            />
+            <Route path="/wrong-place-info" element={<WrongPlaceInfo />} />
+          </Routes>
+        </FormContextProvider>
       </BrowserRouter>
     </>
   );

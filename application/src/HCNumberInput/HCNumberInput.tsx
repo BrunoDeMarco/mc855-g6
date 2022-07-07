@@ -1,11 +1,14 @@
 import { TextField } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BaseLayout } from "../components/BaseLayout/BaseLayout";
 import { Box } from "../components/Box/Box";
 import { FilledButton } from "../components/FilledButton/FilledButton";
+import FormContext from "../FormContextProvider/FormContextProvider";
 
 export const HCNumberInput: React.FC = () => {
+  const { values, setHc } = useContext(FormContext);
+
   return (
     <BaseLayout
       title={"Boas vindas ao Ambulatório de Pediatria do HC Unicamp!"}
@@ -14,9 +17,16 @@ export const HCNumberInput: React.FC = () => {
       }
     >
       <Box between={8}>
-        <TextField name={"hc"} value={""} label={"Digite o seu HC aqui."} />
+        <TextField
+          name={"hc"}
+          value={values.hc}
+          label={"Digite o seu HC aqui."}
+          onChange={(e) => setHc(e.target.value)}
+        />
         <Link to={"/attendance-type-selection"}>
-          <FilledButton variant={"contained"}>Próxima Etapa</FilledButton>
+          <FilledButton onClick={() => console.log(values)}>
+            Próxima Etapa
+          </FilledButton>
         </Link>
       </Box>
     </BaseLayout>
