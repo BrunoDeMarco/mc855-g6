@@ -1,8 +1,8 @@
-import { Button } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { BaseLayout } from "../components/BaseLayout/BaseLayout";
 import { Box } from "../components/Box/Box";
+import { FilledButton } from "../components/FilledButton/FilledButton";
 
 export const AttendanceTypeSelection: React.FC = () => {
   return (
@@ -15,18 +15,18 @@ export const AttendanceTypeSelection: React.FC = () => {
       <Box between={8}>
         <span>O que você veio fazer hoje?</span>
         <Link to={"/recurring-consultation-expertise-selection"}>
-          <Button variant={"contained"}>Realizar uma consulta</Button>
+          <FilledButton>Realizar uma consulta</FilledButton>
         </Link>
         <Link to={"/administrative-attendance-info"}>
-          <Button variant={"contained"}>
+          <FilledButton>
             Receber medicamento, fazer um teste, curativo ou outro procedimento
-          </Button>
+          </FilledButton>
         </Link>
         <Link to={"/administrative-attendance-info"}>
-          <Button variant={"contained"}>
+          <FilledButton>
             Pedir remarcação de consulta, relatório, receita ou fazer uma
             pergunta
-          </Button>
+          </FilledButton>
         </Link>
       </Box>
     </BaseLayout>

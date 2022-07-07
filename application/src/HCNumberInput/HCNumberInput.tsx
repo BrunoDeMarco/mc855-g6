@@ -1,8 +1,9 @@
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { BaseLayout } from "../components/BaseLayout/BaseLayout";
 import { Box } from "../components/Box/Box";
+import { FilledButton } from "../components/FilledButton/FilledButton";
 
 export const HCNumberInput: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ export const HCNumberInput: React.FC = () => {
       <Box between={8}>
         <TextField name={"hc"} value={""} label={"Digite o seu HC aqui."} />
         <Link to={"/attendance-type-selection"}>
-          <Button variant={"contained"}>Próxima Etapa</Button>
+          <FilledButton variant={"contained"}>Próxima Etapa</FilledButton>
         </Link>
       </Box>
     </BaseLayout>

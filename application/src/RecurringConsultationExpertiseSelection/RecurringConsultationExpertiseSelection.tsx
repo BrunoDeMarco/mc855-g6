@@ -1,8 +1,9 @@
-import { Button } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { BaseLayout } from "../components/BaseLayout/BaseLayout";
 import { Box } from "../components/Box/Box";
+import { FilledButton } from "../components/FilledButton/FilledButton";
+import { OutlinedButton } from "../components/OutlinedButton/OutlinedButton";
 
 export const RecurringConsultationExpertiseSelection: React.FC = () => {
   return (
@@ -16,19 +17,19 @@ export const RecurringConsultationExpertiseSelection: React.FC = () => {
         </span>
         <span>Selecione em qual especialidade você deseja se consultar:</span>
         <Link to={"/schedule-type-selection"}>
-          <Button variant={"contained"}>Cardiologia Pediátrica</Button>
+          <FilledButton>Cardiologia Pediátrica</FilledButton>
         </Link>
         <Link to={"/schedule-type-selection"}>
-          <Button variant={"contained"}>Triagem Neonatal</Button>
+          <FilledButton>Triagem Neonatal</FilledButton>
         </Link>
         <Link to={"/schedule-type-selection"}>
-          <Button variant={"contained"}>Reumatologia</Button>
+          <FilledButton>Reumatologia</FilledButton>
         </Link>
         <Link to={"/schedule-type-selection"}>
-          <Button variant={"contained"}>Genética</Button>
+          <FilledButton>Genética</FilledButton>
         </Link>
         <Link to={"/other-expertise-info"}>
-          <Button>Outra Especialidade</Button>
+          <OutlinedButton>Outra Especialidade</OutlinedButton>
         </Link>
       </Box>
     </BaseLayout>

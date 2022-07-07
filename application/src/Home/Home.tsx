@@ -1,8 +1,9 @@
-import { Button, TextField } from "@mui/material";
-import React, { useState } from "react";
+import { TextField } from "@mui/material";
+import React from "react";
 import { Link } from "react-router-dom";
 import { BaseLayout } from "../components/BaseLayout/BaseLayout";
 import { Box } from "../components/Box/Box";
+import { FilledButton } from "../components/FilledButton/FilledButton";
 
 export const Home: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ export const Home: React.FC = () => {
       <Box between={8}>
         <TextField name={"senha"} value={""} label={"Digite sua senha aqui."} />
         <Link to={"/patient-type-selection"}>
-          <Button variant={"contained"}>Próxima Etapa</Button>
+          <FilledButton>Próxima Etapa</FilledButton>
         </Link>
       </Box>
     </BaseLayout>

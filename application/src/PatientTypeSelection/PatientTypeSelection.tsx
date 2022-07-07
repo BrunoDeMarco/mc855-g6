@@ -1,8 +1,9 @@
-import { Button } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { BaseLayout } from "../components/BaseLayout/BaseLayout";
 import { Box } from "../components/Box/Box";
+import { FilledButton } from "../components/FilledButton/FilledButton";
+import { OutlinedButton } from "../components/OutlinedButton/OutlinedButton";
 
 export const PatientTypeSelection: React.FC = () => {
   return (
@@ -14,15 +15,13 @@ export const PatientTypeSelection: React.FC = () => {
     >
       <Box between={8}>
         <Link to={"/hc-number-input"}>
-          <Button variant={"contained"}>JÁ SOU PACIENTE DO HC UNICAMP</Button>
+          <FilledButton>JÁ SOU PACIENTE DO HC UNICAMP</FilledButton>
         </Link>
         <Link to={"/not-scheduled-expertise-selection"}>
-          <Button variant={"contained"}>
-            ESTA É A MINHA PRIMEIRA VEZ NO HC UNICAMP
-          </Button>
+          <FilledButton>ESTA É A MINHA PRIMEIRA VEZ NO HC UNICAMP</FilledButton>
         </Link>
         <Link to={"/wrong-place-info"}>
-          <Button>ESTOU NO LOCAL ERRADO</Button>
+          <OutlinedButton>ESTOU NO LOCAL ERRADO</OutlinedButton>
         </Link>
       </Box>
     </BaseLayout>
