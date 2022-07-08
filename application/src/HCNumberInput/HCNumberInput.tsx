@@ -24,9 +24,7 @@ export const HCNumberInput: React.FC = () => {
           onChange={(e) => setHc(e.target.value)}
         />
         <Link to={"/attendance-type-selection"}>
-          <FilledButton onClick={() => console.log(values)}>
-            Próxima Etapa
-          </FilledButton>
+          <FilledButton>Próxima Etapa</FilledButton>
         </Link>
       </Box>
     </BaseLayout>
