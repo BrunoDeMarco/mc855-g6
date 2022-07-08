@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { createContext } from "react";
 
-interface FormValues {
+export interface FormValues {
   senha: string;
   hc: string;
   atendimento: string;
