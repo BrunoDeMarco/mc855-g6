@@ -1,10 +1,13 @@
-import { Button } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BaseLayout } from "../components/BaseLayout/BaseLayout";
 import { Box } from "../components/Box/Box";
+import { FilledButton } from "../components/FilledButton/FilledButton";
+import FormContext from "../FormContextProvider/FormContextProvider";
 
 export const AttendanceTypeSelection: React.FC = () => {
+  const { setAtendimento } = useContext(FormContext);
+
   return (
     <BaseLayout
       title={"Boas vindas ao Ambulatório de Pediatria do HC Unicamp!"}
@@ -15,18 +18,32 @@ export const AttendanceTypeSelection: React.FC = () => {
       <Box between={8}>
         <span>O que você veio fazer hoje?</span>
         <Link to={"/recurring-consultation-expertise-selection"}>
-          <Button variant={"contained"}>Realizar uma consulta</Button>
+          <FilledButton onClick={() => setAtendimento("Realizar uma consulta")}>
+            Realizar uma consulta
+          </FilledButton>
         </Link>
         <Link to={"/administrative-attendance-info"}>
-          <Button variant={"contained"}>
+          <FilledButton
+            onClick={() =>
+              setAtendimento(
+                "Receber medicamento, fazer um teste, curativo ou outro procedimento"
+              )
+            }
+          >
             Receber medicamento, fazer um teste, curativo ou outro procedimento
-          </Button>
+          </FilledButton>
         </Link>
         <Link to={"/administrative-attendance-info"}>
-          <Button variant={"contained"}>
+          <FilledButton
+            onClick={() =>
+              setAtendimento(
+                "Pedir remarcação de consulta, relatório, receita ou fazer uma pergunta"
+              )
+            }
+          >
             Pedir remarcação de consulta, relatório, receita ou fazer uma
             pergunta
-          </Button>
+          </FilledButton>
         </Link>
       </Box>
     </BaseLayout>

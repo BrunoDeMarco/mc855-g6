@@ -1,8 +1,8 @@
-import { Button } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { BaseLayout } from "../components/BaseLayout/BaseLayout";
 import { Box } from "../components/Box/Box";
+import { OutlinedButton } from "../components/OutlinedButton/OutlinedButton";
 
 export const OtherExpertiseInfo: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ export const OtherExpertiseInfo: React.FC = () => {
         </span>
         <span>TABELA DE HORÁRIOS AQUI</span>
         <Link to={"/recurring-consultation-expertise-selection"}>
-          <Button>Voltar</Button>
+          <OutlinedButton>Voltar</OutlinedButton>
         </Link>
       </Box>
     </BaseLayout>

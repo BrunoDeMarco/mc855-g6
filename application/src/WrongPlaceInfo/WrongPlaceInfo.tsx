@@ -1,7 +1,7 @@
-import { Button } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { BaseLayout } from "../components/BaseLayout/BaseLayout";
+import { OutlinedButton } from "../components/OutlinedButton/OutlinedButton";
 
 export const WrongPlaceInfo: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ export const WrongPlaceInfo: React.FC = () => {
       }
     >
       <Link to={"/patient-type-selection"}>
-        <Button>NÃO ESTOU NO LOCAL ERRADO</Button>
+        <OutlinedButton>NÃO ESTOU NO LOCAL ERRADO</OutlinedButton>
       </Link>
     </BaseLayout>
   );

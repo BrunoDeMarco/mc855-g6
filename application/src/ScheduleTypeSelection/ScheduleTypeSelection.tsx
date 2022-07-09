@@ -1,10 +1,13 @@
-import { Button } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BaseLayout } from "../components/BaseLayout/BaseLayout";
 import { Box } from "../components/Box/Box";
+import { FilledButton } from "../components/FilledButton/FilledButton";
+import FormContext from "../FormContextProvider/FormContextProvider";
 
 export const ScheduleTypeSelection: React.FC = () => {
+  const { setEncaixe } = useContext(FormContext);
+
   return (
     <BaseLayout
       title={"Boas vindas ao Ambulatório de Pediatria do HC Unicamp!"}
@@ -15,17 +18,17 @@ export const ScheduleTypeSelection: React.FC = () => {
       <Box between={8}>
         <span>Sua consulta já estava agendada?</span>
         <Link to={"/scheduled-info"}>
-          <Button variant={"contained"}>Sim</Button>
+          <FilledButton onClick={() => setEncaixe(false)}>Sim</FilledButton>
         </Link>
         <Link to={"/fit-in-info"}>
-          <Button variant={"contained"}>
+          <FilledButton onClick={() => setEncaixe(true)}>
             Não, mas eu recebi um email me informando de uma consulta encaixe
-          </Button>
+          </FilledButton>
         </Link>
         <Link to={"/possibly-info"}>
-          <Button variant={"contained"}>
+          <FilledButton onClick={() => setEncaixe(true)}>
             Não, mas gostaria de me consultar hoje
-          </Button>
+          </FilledButton>
         </Link>
       </Box>
     </BaseLayout>

@@ -10,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
         font-family: Roboto, sans-serif;
         height: 100%;
     }
+
+    a {
+        text-decoration: none;
+    }
 `;
 
 export default GlobalStyle;

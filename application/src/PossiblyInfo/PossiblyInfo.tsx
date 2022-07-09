@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { BaseLayout } from "../components/BaseLayout/BaseLayout";
 import { Box } from "../components/Box/Box";
+import FormContext from "../FormContextProvider/FormContextProvider";
+import { submitForm } from "../helpers/form";
 
 export const PossiblyInfo: React.FC = () => {
+  const { values } = useContext(FormContext);
+
+  useEffect(() => {
+    submitForm(values);
+  }, []);
+
   return (
     <BaseLayout
       title={"Boas vindas ao Ambulatório de Pediatria do HC Unicamp!"}
