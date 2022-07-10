@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
+const GlobalPacientStyle = createGlobalStyle`
     @import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
     @import url('https://fonts.googleapis.com/css2?family=Vidaloka&display=swap');
 
@@ -16,4 +16,4 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-export default GlobalStyle;
+export default GlobalPacientStyle;

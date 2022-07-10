@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+import GlobalPacientStyle from "../../globalPacientStyles"
+import { Header } from "../Header/Header";
+
 interface IBaseLayoutProps {
   title?: string;
   subtitle?: string;
@@ -14,6 +17,8 @@ export const BaseLayout: React.FC<IBaseLayoutProps> = ({
 }) => {
   return (
     <Wrapper>
+      <GlobalPacientStyle />
+      <Header />
       <StyledTitle>{title}</StyledTitle>
       <StyledSubtitle>{subtitle}</StyledSubtitle>
       {children}
