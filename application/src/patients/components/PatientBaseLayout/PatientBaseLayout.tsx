@@ -1,23 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-import GlobalPacientStyle from "../../globalPacientStyles"
+import GlobalPatientStyle from "../../globalPatientStyles";
 import { Header } from "../Header/Header";
 
-interface IBaseLayoutProps {
+interface IPatientBaseLayoutProps {
   title?: string;
   subtitle?: string;
   children?: React.ReactNode;
 }
 
-export const BaseLayout: React.FC<IBaseLayoutProps> = ({
+export const PatientBaseLayout: React.FC<IPatientBaseLayoutProps> = ({
   title,
   subtitle,
   children,
 }) => {
   return (
     <Wrapper>
-      <GlobalPacientStyle />
+      <GlobalPatientStyle />
       <Header />
       <StyledTitle>{title}</StyledTitle>
       <StyledSubtitle>{subtitle}</StyledSubtitle>

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { BaseLayout } from "../components/BaseLayout/BaseLayout";
+import { PatientBaseLayout } from "../components/PatientBaseLayout/PatientBaseLayout";
 import { Box } from "../components/Box/Box";
 import { FilledButton } from "../components/FilledButton/FilledButton";
 import FormContext from "../FormContextProvider/FormContextProvider";
@@ -9,7 +9,7 @@ export const ScheduleTypeSelection: React.FC = () => {
   const { setEncaixe } = useContext(FormContext);
 
   return (
-    <BaseLayout
+    <PatientBaseLayout
       title={"Boas vindas ao Ambulatório de Pediatria do HC Unicamp!"}
       subtitle={
         "Siga as etapas abaixo para realizar seu pré-atendimento e agilizar sua consulta:"
@@ -31,6 +31,6 @@ export const ScheduleTypeSelection: React.FC = () => {
           </FilledButton>
         </Link>
       </Box>
-    </BaseLayout>
+    </PatientBaseLayout>
   );
 };

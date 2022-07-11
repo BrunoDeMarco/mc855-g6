@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { BaseLayout } from "../components/BaseLayout/BaseLayout";
+import { PatientBaseLayout } from "../components/PatientBaseLayout/PatientBaseLayout";
 import { Box } from "../components/Box/Box";
 import { FilledButton } from "../components/FilledButton/FilledButton";
 import { OutlinedButton } from "../components/OutlinedButton/OutlinedButton";
@@ -10,7 +10,7 @@ export const RecurringConsultationExpertiseSelection: React.FC = () => {
   const { setEspecialidade } = useContext(FormContext);
 
   return (
-    <BaseLayout
+    <PatientBaseLayout
       title={"Boas vindas ao Ambulatório de Pediatria do HC Unicamp!"}
     >
       <Box between={8}>
@@ -45,6 +45,6 @@ export const RecurringConsultationExpertiseSelection: React.FC = () => {
           <OutlinedButton>Outra Especialidade</OutlinedButton>
         </Link>
       </Box>
-    </BaseLayout>
+    </PatientBaseLayout>
   );
 };

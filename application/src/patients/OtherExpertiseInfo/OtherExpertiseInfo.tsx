@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BaseLayout } from "../components/BaseLayout/BaseLayout";
+import { PatientBaseLayout } from "../components/PatientBaseLayout/PatientBaseLayout";
 import { Box } from "../components/Box/Box";
 import { OutlinedButton } from "../components/OutlinedButton/OutlinedButton";
 
 export const OtherExpertiseInfo: React.FC = () => {
   return (
-    <BaseLayout
+    <PatientBaseLayout
       title={"Boas vindas ao Ambulatório de Pediatria do HC Unicamp!"}
     >
       <Box between={8}>
@@ -19,6 +19,6 @@ export const OtherExpertiseInfo: React.FC = () => {
           <OutlinedButton>Voltar</OutlinedButton>
         </Link>
       </Box>
-    </BaseLayout>
+    </PatientBaseLayout>
   );
 };

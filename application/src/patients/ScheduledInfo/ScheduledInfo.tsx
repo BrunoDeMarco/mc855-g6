@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { BaseLayout } from "../components/BaseLayout/BaseLayout";
+import { PatientBaseLayout } from "../components/PatientBaseLayout/PatientBaseLayout";
 import { Box } from "../components/Box/Box";
 import FormContext from "../FormContextProvider/FormContextProvider";
 import { submitForm } from "../helpers/form";
@@ -12,7 +12,7 @@ export const ScheduledInfo: React.FC = () => {
   }, []);
 
   return (
-    <BaseLayout
+    <PatientBaseLayout
       title={"Boas vindas ao Ambulatório de Pediatria do HC Unicamp!"}
     >
       <Box between={8}>
@@ -21,6 +21,6 @@ export const ScheduledInfo: React.FC = () => {
         </span>
         <span>Agradecemos pela sua paciência!</span>
       </Box>
-    </BaseLayout>
+    </PatientBaseLayout>
   );
 };
