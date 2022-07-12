@@ -12,8 +12,6 @@ export const createUser = async (username: string, password: string) => {
     });
     return user.user_id;
   } catch (err) {
-    console.log(err)
-    console.log(process.env.DATABASE_URL)
     return -1;
   }
 };
