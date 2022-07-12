@@ -14,7 +14,7 @@ userRouter.post('/create', async (req, res) => {
     const password = req.body.password;
 
     const createdId = await createUser(username, password)
-    res.send(createdId == -1 ? 500 : 200)
+    res.sendStatus(createdId == -1 ? 500 : 200)
 })
 
 export default userRouter;

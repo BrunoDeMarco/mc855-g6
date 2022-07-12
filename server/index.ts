@@ -12,6 +12,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(authRouter);
 app.use(sampleProtectedRouter);
-app.use(userRouter);
+app.use('/user', userRouter);
 
 app.listen(port, () => console.log(`Listening on port ${port}.`));
