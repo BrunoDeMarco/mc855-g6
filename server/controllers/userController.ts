@@ -13,8 +13,12 @@ userRouter.post('/create', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    const createdId = await createUser(username, password)
-    res.sendStatus(createdId == -1 ? 500 : 200)
+    if (username && password) {
+        const createdId = await createUser(username, password)
+        res.sendStatus(createdId == -1 ? 500 : 200)
+    } else {
+        res.sendStatus(403)
+    }  
 })
 
 export default userRouter;
