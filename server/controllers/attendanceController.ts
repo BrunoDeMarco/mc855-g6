@@ -1,7 +1,7 @@
 import express from "express";
 import { MedicalSpeciality } from "../model/medicalSpecialty";
 import { PatientAttendance, PatientAttendanceType } from "../model/patient";
-import { createAttendance, isAttendance } from "../services/attendanceService";
+import { createAttendance, fetchAttendances, isAttendance } from "../services/attendanceService";
 
 const attendanceRouter = express.Router();
 
@@ -26,5 +26,9 @@ attendanceRouter.post("/create", async (req, res) => {
         res.sendStatus(403);
     }
 });
+
+attendanceRouter.get("/fetch", async (req, res) => {
+    res.send(await fetchAttendances())
+})
 
 export default attendanceRouter;

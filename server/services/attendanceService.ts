@@ -19,6 +19,14 @@ export const createAttendance = async (attendance: PatientAttendance) => {
 	}
 };
 
+export const fetchAttendances = async (): Promise<PatientAttendance[]> => {
+	try {
+		return await prisma.attendances.findMany()
+	} catch (err) {
+		return [];
+	}
+}
+
 export const isAttendance = (object: any): object is PatientAttendance => {
 	if (object.speciality && isNaN(object.speciality)) {
 		return false
