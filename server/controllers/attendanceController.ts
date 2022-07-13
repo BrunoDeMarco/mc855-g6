@@ -1,4 +1,5 @@
 import express from "express";
+import { DateRange } from "../model/dateRange";
 import { MedicalSpeciality } from "../model/medicalSpecialty";
 import { PatientAttendance, PatientAttendanceType } from "../model/patient";
 import { createAttendance, fetchAttendances, isAttendance } from "../services/attendanceService";
@@ -28,7 +29,16 @@ attendanceRouter.post("/create", async (req, res) => {
 });
 
 attendanceRouter.get("/fetch", async (req, res) => {
-    res.send(await fetchAttendances())
+    let range: DateRange | undefined
+
+    if (req.query.initial && req.query.final) {
+        range = {
+            initial: new Date(req.query.initial as string),
+            final: new Date(req.query.final  as string)
+        }
+    }
+
+    res.send(await fetchAttendances(range))
 })
 
 export default attendanceRouter;

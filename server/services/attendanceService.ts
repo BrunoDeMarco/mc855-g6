@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { DateRange } from "../model/dateRange";
 import { PatientAttendance, PatientAttendanceType } from "../model/patient";
 
 const prisma = new PrismaClient();
@@ -19,9 +20,22 @@ export const createAttendance = async (attendance: PatientAttendance) => {
 	}
 };
 
-export const fetchAttendances = async (): Promise<PatientAttendance[]> => {
+export const fetchAttendances = async (range?: DateRange): Promise<PatientAttendance[]> => {
 	try {
-		return await prisma.attendances.findMany()
+
+		if (range) {
+			return await prisma.attendances.findMany({
+				where: {
+					createdAt: {
+						lte: range.final,
+						gte: range.initial
+					}
+				}
+			})
+		} else {
+			return await prisma.attendances.findMany()
+		}
+		
 	} catch (err) {
 		return [];
 	}
