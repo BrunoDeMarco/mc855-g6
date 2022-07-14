@@ -1,0 +1,25 @@
+name: Lint
+
+on: push
+
+jobs:
+  lint-server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Navigate to server
+        run: cd server
+      - name: Install Dependencies
+        run: npm install
+      - name: Lint
+        run: npm run lint
+  lint-application:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Navigate to application
+        run: cd application
+      - name: Install Dependencies
+        run: npm install
+      - name: Lint
+        run: npm run lint
