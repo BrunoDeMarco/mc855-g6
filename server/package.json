@@ -6,9 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-dev": "docker-compose down; docker-compose up",
+    "restart-dev": "npm run build; npm run start-dev",
     "start": "ts-node index.ts",
     "dev": "npx prisma migrate dev; nodemon index.ts",
     "lint": "eslint ./**/*.ts"
+
   },
   "author": "",
   "license": "ISC",

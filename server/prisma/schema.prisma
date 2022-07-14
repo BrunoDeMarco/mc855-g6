@@ -14,3 +14,12 @@ model users {
   password String @db.VarChar(64)
   role     Int?
 }
+
+model attendances {
+  attendance_id Int @id @default(autoincrement())
+  number Int 
+  hc String? @db.VarChar(64)
+  type Int
+  speciality Int?
+  createdAt DateTime @default(now())
+}
