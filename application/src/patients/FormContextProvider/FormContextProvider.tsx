@@ -12,11 +12,11 @@ export interface FormValues {
 
 interface FormContextProps {
   values: FormValues;
-  setSenha: (senha: string) => void;
-  setHc: (hc: string) => void;
-  setAtendimento: (atendimento: string) => void;
-  setEspecialidade: (especialidade: string) => void;
-  setEncaixe: (encaixe: boolean) => void;
+  setSenha?: (senha: string) => void;
+  setHc?: (hc: string) => void;
+  setAtendimento?: (atendimento: string) => void;
+  setEspecialidade?: (especialidade: string) => void;
+  setEncaixe?: (encaixe: boolean) => void;
 }
 
 const DEFAULT_VALUE: FormContextProps = {
@@ -27,11 +27,6 @@ const DEFAULT_VALUE: FormContextProps = {
     especialidade: "",
     encaixe: false,
   },
-  setSenha: () => {},
-  setHc: () => {},
-  setAtendimento: () => {},
-  setEspecialidade: () => {},
-  setEncaixe: () => {},
 };
 
 const FormContext = createContext<FormContextProps>(DEFAULT_VALUE);
