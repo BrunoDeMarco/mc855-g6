@@ -13,7 +13,12 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import { visuallyHidden } from "@mui/utils";
 import { HospitalBaseLayout } from "../components/HospitalBaseLayout/HospitalBaseLayout";
-import { Protected } from "../components/Protected/Protected"
+import { Protected } from "../components/Protected/Protected";
+import axios from "axios";
+import {
+  medicalSpecialtyToString,
+  patientAttendanceTypeToString,
+} from "../../enumMappers";
 
 interface Data {
   number: number;
@@ -198,6 +203,21 @@ export const Dashboard: React.FC = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+  const [rows, setRows] = React.useState([]);
+
+  React.useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_HOST}/attendance/fetch`).then((r) =>
+      setRows(
+        r.data.map((dt: any) => ({
+          number: dt.number,
+          hc: dt.hc,
+          service: dt.type,
+          specialty: dt.speciality,
+        }))
+      )
+    );
+  }, []);
+
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
     property: keyof Data
@@ -241,7 +261,7 @@ export const Dashboard: React.FC = () => {
                 />
                 <TableBody>
                   {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                  rows.slice().sort(getComparator(order, orderBy)) */}
+                rows.slice().sort(getComparator(order, orderBy)) */}
                   {stableSort(rows, getComparator(order, orderBy))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
@@ -249,8 +269,14 @@ export const Dashboard: React.FC = () => {
                         <TableRow hover tabIndex={-1} key={row.number}>
                           <TableCell align="right">{row.number}</TableCell>
                           <TableCell align="left">{row.hc}</TableCell>
-                          <TableCell align="left">{row.service}</TableCell>
-                          <TableCell align="left">{row.specialty}</TableCell>
+                          <TableCell align="left">
+                            {patientAttendanceTypeToString(
+                              row.service as number
+                            )}
+                          </TableCell>
+                          <TableCell align="left">
+                            {medicalSpecialtyToString(row.specialty as number)}
+                          </TableCell>
                         </TableRow>
                       );
                     })}

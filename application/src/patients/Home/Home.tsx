@@ -22,6 +22,7 @@ export const Home: React.FC = () => {
           value={values.senha}
           label={"Digite sua senha aqui."}
           onChange={(e) => setSenha(e.target.value)}
+          type={"number"}
         />
         <Link to={"/patient-type-selection"}>
           <FilledButton>Próxima Etapa</FilledButton>
