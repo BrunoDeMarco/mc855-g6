@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import { visuallyHidden } from "@mui/utils";
 import { HospitalBaseLayout } from "../components/HospitalBaseLayout/HospitalBaseLayout";
-import { Protected } from "../components/Protected/Protected"
+import { Protected } from "../components/Protected/Protected";
 import axios from "axios";
 import {
   medicalSpecialtyToString,
@@ -261,7 +261,7 @@ export const Dashboard: React.FC = () => {
                 />
                 <TableBody>
                   {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                  rows.slice().sort(getComparator(order, orderBy)) */}
+                rows.slice().sort(getComparator(order, orderBy)) */}
                   {stableSort(rows, getComparator(order, orderBy))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
@@ -270,7 +270,9 @@ export const Dashboard: React.FC = () => {
                           <TableCell align="right">{row.number}</TableCell>
                           <TableCell align="left">{row.hc}</TableCell>
                           <TableCell align="left">
-                            {patientAttendanceTypeToString(row.service as number)}
+                            {patientAttendanceTypeToString(
+                              row.service as number
+                            )}
                           </TableCell>
                           <TableCell align="left">
                             {medicalSpecialtyToString(row.specialty as number)}

@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { useContext, useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import { TextField } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import { HospitalBaseLayout } from '../components/HospitalBaseLayout/HospitalBaseLayout';
-import SessionContext from '../SessionContextProvider/SessionContextProvider';
-import { login } from '../helpers/login';
+import * as React from "react";
+import { useContext, useState } from "react";
+import { Navigate } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import { TextField } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import { HospitalBaseLayout } from "../components/HospitalBaseLayout/HospitalBaseLayout";
+import SessionContext from "../SessionContextProvider/SessionContextProvider";
+import { login } from "../helpers/login";
 
 export const Login: React.FC = () => {
   const { values, setUsernameData, setTokenData } = useContext(SessionContext);
@@ -19,17 +19,16 @@ export const Login: React.FC = () => {
   const setUserData = (userData: string) => {
     setUser(userData);
     setUsernameData(userData);
-  }
+  };
 
-  // TODO fix to call login()
   const handleClick = () => {
-    setTokenData("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOjAsImlhdCI6MTY1Nzg2NDA4OCwiZXhwIjoxNjU4NDY4ODg4fQ.-EQy2HVHh5GAxW7npOlRZ5De1L0KGdVLRmhpxa52N6s");
+    login(user, password)
+      .then((r) => setTokenData(r.data))
+      .catch((err) => console.log("Login Error", err));
   };
 
   if (values.loggedIn) {
-    return (
-      <Navigate to="/dashboard" replace />
-    );
+    return <Navigate to="/dashboard" replace />;
   }
 
   return (
@@ -38,13 +37,13 @@ export const Login: React.FC = () => {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <Typography component="h1" variant="h5">
-                Sign in
+            Sign in
           </Typography>
           <Box sx={{ mt: 1 }}>
             <TextField
@@ -84,4 +83,4 @@ export const Login: React.FC = () => {
       </Container>
     </HospitalBaseLayout>
   );
-}
+};
