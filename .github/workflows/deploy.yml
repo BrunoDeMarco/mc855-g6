@@ -20,6 +20,7 @@ jobs:
           heroku_email: "brunodemarco@hotmail.com.br"
           appdir: "server"
   deploy-application:
+    needs: [deploy-server]
     runs-on: ubuntu-latest
     defaults:
       run:
