@@ -5,10 +5,13 @@ import FormContext from "../FormContextProvider/FormContextProvider";
 import { submitForm } from "../helpers/form";
 
 export const FirstTimeInfo: React.FC = () => {
-  const { values } = useContext(FormContext);
+  const { values, resetFormValues } = useContext(FormContext);
 
   useEffect(() => {
-    submitForm(values);
+    submitForm(values)
+      .then((r) => console.log("Submit Successful", r))
+      .catch((err) => console.log("Error", err))
+      .finally(() => resetFormValues());
   }, []);
 
   return (

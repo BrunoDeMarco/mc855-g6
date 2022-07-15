@@ -5,6 +5,7 @@ import { Box } from "../components/Box/Box";
 import { FilledButton } from "../components/FilledButton/FilledButton";
 import { OutlinedButton } from "../components/OutlinedButton/OutlinedButton";
 import FormContext from "../FormContextProvider/FormContextProvider";
+import { MedicalSpeciality } from "../helpers/form";
 
 export const RecurringConsultationExpertiseSelection: React.FC = () => {
   const { setEspecialidade } = useContext(FormContext);
@@ -21,23 +22,33 @@ export const RecurringConsultationExpertiseSelection: React.FC = () => {
         <span>Selecione em qual especialidade você deseja se consultar:</span>
         <Link to={"/schedule-type-selection"}>
           <FilledButton
-            onClick={() => setEspecialidade("Cardiologia Pediátrica")}
+            onClick={() =>
+              setEspecialidade(MedicalSpeciality.pediatricCardiology)
+            }
           >
             Cardiologia Pediátrica
           </FilledButton>
         </Link>
         <Link to={"/schedule-type-selection"}>
-          <FilledButton onClick={() => setEspecialidade("Triagem Neonatal")}>
+          <FilledButton
+            onClick={() =>
+              setEspecialidade(MedicalSpeciality.neonatalScreening)
+            }
+          >
             Triagem Neonatal
           </FilledButton>
         </Link>
         <Link to={"/schedule-type-selection"}>
-          <FilledButton onClick={() => setEspecialidade("Reumatologia")}>
+          <FilledButton
+            onClick={() => setEspecialidade(MedicalSpeciality.rheumatology)}
+          >
             Reumatologia
           </FilledButton>
         </Link>
         <Link to={"/schedule-type-selection"}>
-          <FilledButton onClick={() => setEspecialidade("Genética")}>
+          <FilledButton
+            onClick={() => setEspecialidade(MedicalSpeciality.genetic)}
+          >
             Genética
           </FilledButton>
         </Link>
