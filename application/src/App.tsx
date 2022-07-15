@@ -22,44 +22,120 @@ const App: React.FC = () => {
   return (
     <>
       <BrowserRouter>
-
         <Routes>
           {/* Patient routes */}
-          <Route path="/" element={<PatientContext><Home /></PatientContext>} />
+          <Route
+            path="/"
+            element={
+              <PatientContext>
+                <Home />
+              </PatientContext>
+            }
+          />
           <Route
             path="/administrative-attendance-info"
-            element={<PatientContext><AdministrativeAttendanceInfo /></PatientContext>}
+            element={
+              <PatientContext>
+                <AdministrativeAttendanceInfo />
+              </PatientContext>
+            }
           />
           <Route
             path="/attendance-type-selection"
-            element={<PatientContext><AttendanceTypeSelection /></PatientContext>}
+            element={
+              <PatientContext>
+                <AttendanceTypeSelection />
+              </PatientContext>
+            }
           />
-          <Route path="/first-time-info" element={<PatientContext><FirstTimeInfo /></PatientContext>} />
-          <Route path="/fit-in-info" element={<PatientContext><FitInInfo /></PatientContext>} />
-          <Route path="/hc-number-input" element={<PatientContext><HCNumberInput /></PatientContext>} />
+          <Route
+            path="/first-time-info"
+            element={
+              <PatientContext>
+                <FirstTimeInfo />
+              </PatientContext>
+            }
+          />
+          <Route
+            path="/fit-in-info"
+            element={
+              <PatientContext>
+                <FitInInfo />
+              </PatientContext>
+            }
+          />
+          <Route
+            path="/hc-number-input"
+            element={
+              <PatientContext>
+                <HCNumberInput />
+              </PatientContext>
+            }
+          />
           <Route
             path="/not-scheduled-expertise-selection"
-            element={<PatientContext><NotScheduledExpertiseSelection /></PatientContext>}
+            element={
+              <PatientContext>
+                <NotScheduledExpertiseSelection />
+              </PatientContext>
+            }
           />
           <Route
             path="/other-expertise-info"
-            element={<PatientContext><OtherExpertiseInfo /></PatientContext>}
+            element={
+              <PatientContext>
+                <OtherExpertiseInfo />
+              </PatientContext>
+            }
           />
           <Route
             path="/patient-type-selection"
-            element={<PatientContext><PatientTypeSelection /></PatientContext>}
+            element={
+              <PatientContext>
+                <PatientTypeSelection />
+              </PatientContext>
+            }
           />
-          <Route path="/possibly-info" element={<PatientContext><PossiblyInfo /></PatientContext>} />
+          <Route
+            path="/possibly-info"
+            element={
+              <PatientContext>
+                <PossiblyInfo />
+              </PatientContext>
+            }
+          />
           <Route
             path="/recurring-consultation-expertise-selection"
-            element={<PatientContext><RecurringConsultationExpertiseSelection /></PatientContext>}
+            element={
+              <PatientContext>
+                <RecurringConsultationExpertiseSelection />
+              </PatientContext>
+            }
           />
-          <Route path="/scheduled-info" element={<PatientContext><ScheduledInfo /></PatientContext>} />
+          <Route
+            path="/scheduled-info"
+            element={
+              <PatientContext>
+                <ScheduledInfo />
+              </PatientContext>
+            }
+          />
           <Route
             path="/schedule-type-selection"
-            element={<PatientContext><ScheduleTypeSelection /></PatientContext>}
+            element={
+              <PatientContext>
+                <ScheduleTypeSelection />
+              </PatientContext>
+            }
           />
-          <Route path="/wrong-place-info" element={<PatientContext><WrongPlaceInfo /></PatientContext>} />
+          <Route
+            path="/wrong-place-info"
+            element={
+              <PatientContext>
+                <WrongPlaceInfo />
+              </PatientContext>
+            }
+          />
 
           {/* Hospital team routes */}
           <Route path="/dashboard" element={<Dashboard />} />
