@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useContext, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -10,21 +11,26 @@ import SessionContext from '../SessionContextProvider/SessionContextProvider';
 import { login } from '../helpers/login';
 
 export const Login: React.FC = () => {
-  const { values, setUsername, setToken } = useContext(SessionContext);
+  const { values, setUsernameData, setTokenData } = useContext(SessionContext);
 
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
 
   const setUserData = (userData: string) => {
     setUser(userData);
-    setUsername(userData);
+    setUsernameData(userData);
   }
 
   // TODO fix to call login()
   const handleClick = () => {
-    setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOjAsImlhdCI6MTY1Nzg2NDA4OCwiZXhwIjoxNjU4NDY4ODg4fQ.-EQy2HVHh5GAxW7npOlRZ5De1L0KGdVLRmhpxa52N6s");
-    console.log(values);
+    setTokenData("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOjAsImlhdCI6MTY1Nzg2NDA4OCwiZXhwIjoxNjU4NDY4ODg4fQ.-EQy2HVHh5GAxW7npOlRZ5De1L0KGdVLRmhpxa52N6s");
   };
+
+  if (values.loggedIn) {
+    return (
+      <Navigate to="/dashboard" replace />
+    );
+  }
 
   return (
     <HospitalBaseLayout>

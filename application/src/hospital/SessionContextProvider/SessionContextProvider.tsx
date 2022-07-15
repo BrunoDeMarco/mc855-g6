@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
 import { createContext } from "react";
+import { ReactSession } from 'react-client-session';
 
 export interface SessionValues {
   token: string;
@@ -10,8 +10,8 @@ export interface SessionValues {
 
 interface SessionContextProps {
   values: SessionValues;
-  setToken: (token: string) => void;
-  setUsername: (username: string) => void;
+  setTokenData: (token: string) => void;
+  setUsernameData: (username: string) => void;
 }
 
 const DEFAULT_VALUE: SessionContextProps = {
@@ -20,8 +20,8 @@ const DEFAULT_VALUE: SessionContextProps = {
     username: "",
     loggedIn: false,
   },
-  setToken: () => {},
-  setUsername: () => {},
+  setTokenData: () => {},
+  setUsernameData: () => {},
 };
 
 const SessionContext = createContext<SessionContextProps>(DEFAULT_VALUE);
@@ -29,19 +29,37 @@ const SessionContext = createContext<SessionContextProps>(DEFAULT_VALUE);
 const SessionContextProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
+  ReactSession.setStoreType("localStorage");
+
   const [sessionValues, setSessionValues] = useState<SessionValues>(
-    DEFAULT_VALUE.values
+    !ReactSession.get("loggedIn") ? DEFAULT_VALUE.values :
+      {
+        token: ReactSession.get("token"),
+        username: ReactSession.get("username"),
+        loggedIn: ReactSession.get("loggedIn"),
+      }
   );
 
   const setToken = (token: string) => setSessionValues({ ...sessionValues, token, loggedIn: true});
   const setUsername = (username: string) => setSessionValues({ ...sessionValues, username});
 
+  const setTokenData = (token: string) => {
+    ReactSession.set("token", token);
+    ReactSession.set("loggedIn", true);
+    setToken(token);
+  }
+
+  const setUsernameData = (username: string) => {
+    ReactSession.set("username", username);
+    setUsername(username);
+  }
+
   return (
     <SessionContext.Provider
       value={{
         values: sessionValues,
-        setToken,
-        setUsername,
+        setTokenData,
+        setUsernameData,
       }}
     >
       {children}
