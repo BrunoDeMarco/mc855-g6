@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import { visuallyHidden } from "@mui/utils";
 import { HospitalBaseLayout } from "../components/HospitalBaseLayout/HospitalBaseLayout";
+import { Protected } from "../components/Protected/Protected";
 import axios from "axios";
 import {
   medicalSpecialtyToString,
@@ -242,64 +243,68 @@ export const Dashboard: React.FC = () => {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
-    <HospitalBaseLayout>
-      <Box sx={{ width: "100%" }}>
-        <Paper sx={{ width: "100%", mb: 2 }}>
-          <EnhancedTableToolbar />
-          <TableContainer>
-            <Table
-              sx={{ minWidth: 750 }}
-              aria-labelledby="tableTitle"
-              size={"medium"}
-            >
-              <EnhancedTableHead
-                order={order}
-                orderBy={orderBy}
-                onRequestSort={handleRequestSort}
-              />
-              <TableBody>
-                {/* if you don't need to support IE11, you can replace the `stableSort` call with:
+    <Protected>
+      <HospitalBaseLayout>
+        <Box sx={{ width: "100%" }}>
+          <Paper sx={{ width: "100%", mb: 2 }}>
+            <EnhancedTableToolbar />
+            <TableContainer>
+              <Table
+                sx={{ minWidth: 750 }}
+                aria-labelledby="tableTitle"
+                size={"medium"}
+              >
+                <EnhancedTableHead
+                  order={order}
+                  orderBy={orderBy}
+                  onRequestSort={handleRequestSort}
+                />
+                <TableBody>
+                  {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                 rows.slice().sort(getComparator(order, orderBy)) */}
-                {stableSort(rows, getComparator(order, orderBy))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => {
-                    return (
-                      <TableRow hover tabIndex={-1} key={row.number}>
-                        <TableCell align="right">{row.number}</TableCell>
-                        <TableCell align="left">{row.hc}</TableCell>
-                        <TableCell align="left">
-                          {patientAttendanceTypeToString(row.service as number)}
-                        </TableCell>
-                        <TableCell align="left">
-                          {medicalSpecialtyToString(row.specialty as number)}
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: 53 * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={4} />
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage="Linhas por página"
-          />
-        </Paper>
-      </Box>
-    </HospitalBaseLayout>
+                  {stableSort(rows, getComparator(order, orderBy))
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row) => {
+                      return (
+                        <TableRow hover tabIndex={-1} key={row.number}>
+                          <TableCell align="right">{row.number}</TableCell>
+                          <TableCell align="left">{row.hc}</TableCell>
+                          <TableCell align="left">
+                            {patientAttendanceTypeToString(
+                              row.service as number
+                            )}
+                          </TableCell>
+                          <TableCell align="left">
+                            {medicalSpecialtyToString(row.specialty as number)}
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  {emptyRows > 0 && (
+                    <TableRow
+                      style={{
+                        height: 53 * emptyRows,
+                      }}
+                    >
+                      <TableCell colSpan={4} />
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <TablePagination
+              rowsPerPageOptions={[5, 10, 25]}
+              component="div"
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              labelRowsPerPage="Linhas por página"
+            />
+          </Paper>
+        </Box>
+      </HospitalBaseLayout>
+    </Protected>
   );
 };

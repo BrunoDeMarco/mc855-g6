@@ -16,6 +16,8 @@ import { RecurringConsultationExpertiseSelection } from "./patients/RecurringCon
 import { ScheduledInfo } from "./patients/ScheduledInfo/ScheduledInfo";
 import { ScheduleTypeSelection } from "./patients/ScheduleTypeSelection/ScheduleTypeSelection";
 import { WrongPlaceInfo } from "./patients/WrongPlaceInfo/WrongPlaceInfo";
+import { HospitalContext } from "./hospital/HospitalContext/HospitalContext";
+import { Login } from "./hospital/Login/Login"
 import { Dashboard } from "./hospital/Dashboard/Dashboard";
 
 const App: React.FC = () => {
@@ -138,7 +140,8 @@ const App: React.FC = () => {
           />
 
           {/* Hospital team routes */}
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/login" element={<HospitalContext><Login /></HospitalContext>} />
+          <Route path="/dashboard" element={<HospitalContext><Dashboard /></HospitalContext>} />
         </Routes>
       </BrowserRouter>
     </>

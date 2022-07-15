@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useContext } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -14,6 +15,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import SessionContext from "../../SessionContextProvider/SessionContextProvider";
 
 interface Props {
   /**
@@ -24,33 +26,33 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const loggedIn = true; // TODO chenge to use session data
 const navItems = [
   {
     text: "Login",
     link: "/login",
-    condition: () => !loggedIn,
+    condition: (loggedIn: boolean) => !loggedIn,
   },
   {
     text: "Logout",
     link: "/logout",
-    condition: (mobile: boolean) => mobile && loggedIn,
+    condition: (loggedIn: boolean, mobile: boolean) => mobile && loggedIn,
   },
   {
     text: "Dashboard",
     link: "/dashboard",
-    condition: () => loggedIn,
+    condition: (loggedIn: boolean) => loggedIn,
   },
   {
     text: "Usuários",
     link: "/users",
-    condition: () => loggedIn,
+    condition: (loggedIn: boolean) => loggedIn,
   },
 ];
 
 export const HospitalHeader: React.FC = (props: Props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { values } = useContext(SessionContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -68,7 +70,7 @@ export const HospitalHeader: React.FC = (props: Props) => {
       <Divider />
       <List>
         {navItems
-          .filter((i) => i.condition(true))
+          .filter((i) => i.condition(values.loggedIn, true))
           .map((item) => (
             <ListItem key={item.text} disablePadding>
               <Link to={item.link}>
@@ -103,24 +105,22 @@ export const HospitalHeader: React.FC = (props: Props) => {
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems
-              .filter((i) => i.condition(false))
+              .filter((i) => i.condition(values.loggedIn, false))
               .map((item) => (
                 <Link key={item.text} to={item.link}>
                   <Button sx={{ color: "#fff" }}>{item.text}</Button>
                 </Link>
               ))}
-            {/* TODO change loggedIn to check state */}
-            {loggedIn ? (
+            {values.loggedIn ? (
               <Button
                 onClick={handleUserToggle}
                 sx={{ color: "#fff" }}
                 startIcon={<AccountCircleIcon />}
               >
-                Usuário
+                {values.username}
               </Button>
-            ) : (
-              <span></span>
-            )}
+            )
+            : null }
           </Box>
         </Toolbar>
       </AppBar>
@@ -139,8 +139,7 @@ export const HospitalHeader: React.FC = (props: Props) => {
               boxSizing: "border-box",
               width: drawerWidth,
             },
-          }}
-        >
+          }}>
           {drawer}
         </Drawer>
       </Box>
