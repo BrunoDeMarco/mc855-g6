@@ -8,7 +8,9 @@ export const ScheduledInfo: React.FC = () => {
   const { values } = useContext(FormContext);
 
   useEffect(() => {
-    submitForm(values);
+    submitForm(values)
+      .then((r) => console.log("Submit Successful", r))
+      .catch((err) => console.log("Error", err));
   }, []);
 
   return (

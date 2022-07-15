@@ -25,12 +25,6 @@ export const submitForm = (form: FormValues) => {
     speciality: form.especialidade,
   };
 
-  console.log(
-    "Body",
-    reqBody,
-    `${process.env.REACT_APP_API_HOST}/attendance/create`
-  );
-
   return axios.post(
     `${process.env.REACT_APP_API_HOST}/attendance/create`,
     reqBody
