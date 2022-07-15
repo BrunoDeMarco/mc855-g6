@@ -44,6 +44,7 @@ export const authenticate = async (
       };
     }
   } catch (err) {
+    console.log("Auth Error", err);
     return { authenticated: false };
   }
 

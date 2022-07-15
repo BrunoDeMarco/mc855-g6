@@ -18,4 +18,8 @@ authRouter.post("/session", (req, res) => {
     .catch(() => res.status(500).send());
 });
 
+authRouter.get("/healthcheck", (req, res) => {
+  res.status(200).send("Working just fine!");
+});
+
 export default authRouter;
