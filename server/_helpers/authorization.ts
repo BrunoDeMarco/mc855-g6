@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-const authorization = (req: Request, res: Response, next: Function) => {
+const authorization = (req: Request, res: Response, next: NextFunction) => {
   const authToken = req.headers["authorization"]?.split(" ")[1] || "";
 
   try {

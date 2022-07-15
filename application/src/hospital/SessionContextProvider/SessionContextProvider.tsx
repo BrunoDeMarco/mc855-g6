@@ -20,8 +20,8 @@ const DEFAULT_VALUE: SessionContextProps = {
     username: "",
     loggedIn: false,
   },
-  setTokenData: () => {},
-  setUsernameData: () => {},
+  setTokenData: () => console.log("setTokenData not set"),
+  setUsernameData: () => console.log("setUsernameData not set"),
 };
 
 const SessionContext = createContext<SessionContextProps>(DEFAULT_VALUE);

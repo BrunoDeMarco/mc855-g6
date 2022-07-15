@@ -1,20 +1,20 @@
-import * as React from 'react';
-import { useContext } from 'react';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
+import * as React from "react";
+import { useContext } from "react";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 import SessionContext from "../../SessionContextProvider/SessionContextProvider";
 
 interface Props {
@@ -28,23 +28,23 @@ interface Props {
 const drawerWidth = 240;
 const navItems = [
   {
-    text: 'Login',
-    link: '/login',
+    text: "Login",
+    link: "/login",
     condition: (loggedIn: boolean) => !loggedIn,
   },
   {
-    text: 'Logout',
-    link: '/logout',
-    condition: (loggedIn:boolean, mobile: boolean) => mobile && loggedIn,
+    text: "Logout",
+    link: "/logout",
+    condition: (loggedIn: boolean, mobile: boolean) => mobile && loggedIn,
   },
   {
-    text: 'Dashboard',
-    link: '/dashboard',
+    text: "Dashboard",
+    link: "/dashboard",
     condition: (loggedIn: boolean) => loggedIn,
   },
   {
-    text: 'Usuários',
-    link: '/users',
+    text: "Usuários",
+    link: "/users",
     condition: (loggedIn: boolean) => loggedIn,
   },
 ];
@@ -63,29 +63,32 @@ export const HospitalHeader: React.FC = (props: Props) => {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
         COLOCAR DADOS DO USUÁRIO LOGADO AQUI
       </Typography>
       <Divider />
       <List>
-        {navItems.filter((i) => i.condition(values.loggedIn, true)).map((item) => (
-          <ListItem key={item.text} disablePadding>
-            <Link to={item.link}>
-              <ListItemButton sx={{ textAlign: 'center' }}>
-                <ListItemText primary={item.text} />
-              </ListItemButton>
-            </Link>
-          </ListItem>
-        ))}
+        {navItems
+          .filter((i) => i.condition(values.loggedIn, true))
+          .map((item) => (
+            <ListItem key={item.text} disablePadding>
+              <Link to={item.link}>
+                <ListItemButton sx={{ textAlign: "center" }}>
+                  <ListItemText primary={item.text} />
+                </ListItemButton>
+              </Link>
+            </ListItem>
+          ))}
       </List>
     </Box>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <AppBar component="nav">
         <Toolbar>
           <IconButton
@@ -93,35 +96,31 @@ export const HospitalHeader: React.FC = (props: Props) => {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1 }}
-          >
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Sistema de Pré-Atendimento
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.filter((i) => i.condition(values.loggedIn, false)).map((item) => (
-              <Link to={item.link}>
-                <Button key={item.text} sx={{ color: '#fff' }}>
-                  {item.text}
-                </Button>
-              </Link>
-            ))}
-            {/* TODO change loggedIn to check state */}
-            {values.loggedIn ?
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            {navItems
+              .filter((i) => i.condition(values.loggedIn, false))
+              .map((item) => (
+                <Link key={item.text} to={item.link}>
+                  <Button sx={{ color: "#fff" }}>{item.text}</Button>
+                </Link>
+              ))}
+            {values.loggedIn ? (
               <Button
                 onClick={handleUserToggle}
-                sx={{ color: '#fff' }}
+                sx={{ color: "#fff" }}
                 startIcon={<AccountCircleIcon />}
               >
                 {values.username}
               </Button>
-            : null}
+            )
+            : null }
           </Box>
         </Toolbar>
       </AppBar>
@@ -135,13 +134,15 @@ export const HospitalHeader: React.FC = (props: Props) => {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
-        >
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}>
           {drawer}
         </Drawer>
       </Box>
     </Box>
   );
-}
+};

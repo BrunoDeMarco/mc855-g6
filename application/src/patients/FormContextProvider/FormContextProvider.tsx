@@ -27,11 +27,11 @@ const DEFAULT_VALUE: FormContextProps = {
     especialidade: "",
     encaixe: false,
   },
-  setSenha: () => {},
-  setHc: () => {},
-  setAtendimento: () => {},
-  setEspecialidade: () => {},
-  setEncaixe: () => {},
+  setSenha: () => console.log("setSenha not set."),
+  setHc: () => console.log("setHc not set."),
+  setAtendimento: () => console.log("setAtendimento not set."),
+  setEspecialidade: () => console.log("setEspecialidade not set."),
+  setEncaixe: () => console.log("setEncaixe not set."),
 };
 
 const FormContext = createContext<FormContextProps>(DEFAULT_VALUE);

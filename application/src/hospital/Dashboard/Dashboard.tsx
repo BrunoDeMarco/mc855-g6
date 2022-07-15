@@ -1,19 +1,19 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import { visuallyHidden } from '@mui/utils';
-import { HospitalBaseLayout } from '../components/HospitalBaseLayout/HospitalBaseLayout';
-import { Protected } from '../components/Protected/Protected';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import TableSortLabel from "@mui/material/TableSortLabel";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import { visuallyHidden } from "@mui/utils";
+import { HospitalBaseLayout } from "../components/HospitalBaseLayout/HospitalBaseLayout";
+import { Protected } from "../components/Protected/Protected"
 
 interface Data {
   number: number;
@@ -27,11 +27,11 @@ function createData(
   number: number,
   hc: string,
   service: string,
-  specialty: string,
+  specialty: string
 ): Data {
-  hc = (hc ? hc : '-');
-  service = (service ? service : '-');
-  specialty = (specialty ? specialty : '-');
+  hc = hc ? hc : "-";
+  service = service ? service : "-";
+  specialty = specialty ? specialty : "-";
   return {
     number,
     hc,
@@ -41,11 +41,21 @@ function createData(
 }
 
 const rows = [
-  createData(1, '', 'Consulta', 'Reumatologia'),
-  createData(3, '12345', 'Medicamento, Teste, Curativo ou Outro Procedimento', ''),
-  createData(4, '13548', 'Remarcação de Consulta, Relatório, Receita ou Pergunta', ''),
-  createData(5, '', 'Local Errado', ''),
-  createData(8, '79538', 'Consulta', 'Cardiologia Pediátrica'),
+  createData(1, "", "Consulta", "Reumatologia"),
+  createData(
+    3,
+    "12345",
+    "Medicamento, Teste, Curativo ou Outro Procedimento",
+    ""
+  ),
+  createData(
+    4,
+    "13548",
+    "Remarcação de Consulta, Relatório, Receita ou Pergunta",
+    ""
+  ),
+  createData(5, "", "Local Errado", ""),
+  createData(8, "79538", "Consulta", "Cardiologia Pediátrica"),
 ];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -58,23 +68,26 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   return 0;
 }
 
-type Order = 'asc' | 'desc';
+type Order = "asc" | "desc";
 
 function getComparator<Key extends keyof any>(
   order: Order,
-  orderBy: Key,
+  orderBy: Key
 ): (
   a: { [key in Key]: number | string },
-  b: { [key in Key]: number | string },
+  b: { [key in Key]: number | string }
 ) => number {
-  return order === 'desc'
+  return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
 // This method is created for cross-browser compatibility, if you don't
 // need to support IE11, you can use Array.prototype.sort() directly
-function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
+function stableSort<T>(
+  array: readonly T[],
+  comparator: (a: T, b: T) => number
+) {
   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
@@ -94,36 +107,38 @@ interface HeadCell {
 
 const headCells: readonly HeadCell[] = [
   {
-    id: 'number',
+    id: "number",
     numeric: true,
-    label: 'Senha',
+    label: "Senha",
   },
   {
-    id: 'hc',
+    id: "hc",
     numeric: false,
-    label: 'HC',
+    label: "HC",
   },
   {
-    id: 'service',
+    id: "service",
     numeric: false,
-    label: 'Tipo de Atendimento',
+    label: "Tipo de Atendimento",
   },
   {
-    id: 'specialty',
+    id: "specialty",
     numeric: false,
-    label: 'Especialidade',
+    label: "Especialidade",
   },
 ];
 
 interface EnhancedTableProps {
-  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
+  onRequestSort: (
+    event: React.MouseEvent<unknown>,
+    property: keyof Data
+  ) => void;
   order: Order;
   orderBy: string;
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { order, orderBy, onRequestSort } =
-    props;
+  const { order, orderBy, onRequestSort } = props;
   const createSortHandler =
     (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
@@ -135,18 +150,18 @@ function EnhancedTableHead(props: EnhancedTableProps) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={headCell.numeric ? "right" : "left"}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
+              direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                  {order === "desc" ? "sorted descending" : "sorted ascending"}
                 </Box>
               ) : null}
             </TableSortLabel>
@@ -157,12 +172,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-}
-
 const EnhancedTableToolbar = () => {
-
   return (
     <Toolbar
       sx={{
@@ -171,7 +181,7 @@ const EnhancedTableToolbar = () => {
       }}
     >
       <Typography
-        sx={{ flex: '1 1 100%' }}
+        sx={{ flex: "1 1 100%" }}
         variant="h6"
         id="tableTitle"
         component="div"
@@ -183,17 +193,17 @@ const EnhancedTableToolbar = () => {
 };
 
 export const Dashboard: React.FC = () => {
-  const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof Data>('number');
+  const [order, setOrder] = React.useState<Order>("asc");
+  const [orderBy, setOrderBy] = React.useState<keyof Data>("number");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
-    property: keyof Data,
+    property: keyof Data
   ) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
+    const isAsc = orderBy === property && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
 
@@ -201,7 +211,9 @@ export const Dashboard: React.FC = () => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -213,14 +225,14 @@ export const Dashboard: React.FC = () => {
   return (
     <Protected>
       <HospitalBaseLayout>
-        <Box sx={{ width: '100%'}}>
-          <Paper sx={{ width: '100%', mb: 2 }}>
+        <Box sx={{ width: "100%" }}>
+          <Paper sx={{ width: "100%", mb: 2 }}>
             <EnhancedTableToolbar />
             <TableContainer>
               <Table
                 sx={{ minWidth: 750 }}
                 aria-labelledby="tableTitle"
-                size={'medium'}
+                size={"medium"}
               >
                 <EnhancedTableHead
                   order={order}
@@ -232,14 +244,9 @@ export const Dashboard: React.FC = () => {
                   rows.slice().sort(getComparator(order, orderBy)) */}
                   {stableSort(rows, getComparator(order, orderBy))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row, index) => {
-
+                    .map((row) => {
                       return (
-                        <TableRow
-                          hover
-                          tabIndex={-1}
-                          key={row.number}
-                        >
+                        <TableRow hover tabIndex={-1} key={row.number}>
                           <TableCell align="right">{row.number}</TableCell>
                           <TableCell align="left">{row.hc}</TableCell>
                           <TableCell align="left">{row.service}</TableCell>
@@ -267,11 +274,11 @@ export const Dashboard: React.FC = () => {
               page={page}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
-              labelRowsPerPage='Linhas por página'
+              labelRowsPerPage="Linhas por página"
             />
           </Paper>
         </Box>
       </HospitalBaseLayout>
     </Protected>
   );
-}
+};

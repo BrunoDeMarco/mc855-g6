@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-server:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./server
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "mc855-g6-api"
+          heroku_email: "brunodemarco@hotmail.com.br"
+          appdir: "server"
+  deploy-application:
+    needs: [deploy-server]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./application
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "mc855-g6-app"
+          heroku_email: "brunodemarco@hotmail.com.br"
+          appdir: "application"
